@@ -1,1 +1,1 @@
-./bin/zeroPass
+nohup ./bin/zeroPass >> log/log.log 2>&1 &
