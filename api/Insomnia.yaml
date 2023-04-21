@@ -1,0 +1,95 @@
+_type: export
+__export_format: 4
+__export_date: 2023-04-21T17:08:49.720Z
+__export_source: insomnia.desktop.app:v2023.1.0
+resources:
+  - _id: req_f4de14c669c44edc90d8b289ce1a8915
+    parentId: wrk_507b96781f914987b526f9945f64d72e
+    modified: 1682096513075
+    created: 1682096491365
+    url: "{{server}}verify"
+    name: Verify
+    description: ""
+    method: POST
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1682096491365
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: wrk_507b96781f914987b526f9945f64d72e
+    parentId: null
+    modified: 1682096449205
+    created: 1680683547507
+    name: ZeroPassAPI
+    description: ""
+    scope: collection
+    _type: workspace
+  - _id: req_5ace5d2ee4b14b03818daa74e86f5743
+    parentId: wrk_507b96781f914987b526f9945f64d72e
+    modified: 1682096524365
+    created: 1680683553290
+    url: "{{server}}upload"
+    name: Upload data
+    description: ""
+    method: POST
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1680683553290
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_56a20bcf2d98d91ca6e39f0a0fe37fcb600c6e30
+    parentId: wrk_507b96781f914987b526f9945f64d72e
+    modified: 1682096537202
+    created: 1680683547522
+    name: Base Environment
+    data: {}
+    dataPropertyOrder: {}
+    color: null
+    isPrivate: false
+    metaSortKey: 1680683547522
+    _type: environment
+  - _id: jar_56a20bcf2d98d91ca6e39f0a0fe37fcb600c6e30
+    parentId: wrk_507b96781f914987b526f9945f64d72e
+    modified: 1680683547524
+    created: 1680683547524
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
+  - _id: spc_7bf401fc766d47ee897df23b88705567
+    parentId: wrk_507b96781f914987b526f9945f64d72e
+    modified: 1680683547513
+    created: 1680683547513
+    fileName: TestAPI
+    contents: ""
+    contentType: yaml
+    _type: api_spec
+  - _id: env_e3b9161db071443689ae0513625cebd6
+    parentId: env_56a20bcf2d98d91ca6e39f0a0fe37fcb600c6e30
+    modified: 1682096555869
+    created: 1682096387435
+    name: ZeroPass env
+    data:
+      server: 127.0.0.1:8080/
+    dataPropertyOrder:
+      "&":
+        - server
+    color: null
+    isPrivate: false
+    metaSortKey: 1682096387435
+    _type: environment
