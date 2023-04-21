@@ -16,5 +16,9 @@ edit .env file
 ```azure
 DB_CONNECTION=mongodb://localhost:27017
 ```
-
+### 3. Build and run
+```
+./build.sh
+./run.sh
+```
 
