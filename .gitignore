@@ -22,6 +22,8 @@ go.work
 
 .idea/*
 
-.env
+utils/.env
 
 bin/*
+
+.env

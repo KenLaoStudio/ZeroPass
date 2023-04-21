@@ -23,10 +23,21 @@ func TestInsertDocument(t *testing.T) {
 	mc, _ := NewMongoClient(connectionString)
 
 	// Act
-	result, err := mc.InsertDocument("test", "test", map[string]string{
+	result, err := mc.InsertDocument("zeroPass", "member", map[string]string{
 		"test": "test",
 	})
 
+	// Assert
+	assert.Nil(t, err)
+	assert.NotNil(t, result)
+}
+
+func TestAllMember(t *testing.T) {
+	// Arrange
+	mc, _ := NewMongoClient(connectionString)
+
+	// Act
+	result, err := mc.FindAllDocuments("zeroPass", "member", nil)
 	// Assert
 	assert.Nil(t, err)
 	assert.NotNil(t, result)

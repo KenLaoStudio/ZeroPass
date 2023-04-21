@@ -1,0 +1,14 @@
+basePath: /user
+host: localhost:5000
+info:
+  contact: {}
+  title: User API documentation
+  version: 1.0.0
+paths:
+  /upload:
+    post:
+      responses: {}
+  /verify:
+    post:
+      responses: {}
+swagger: "2.0"

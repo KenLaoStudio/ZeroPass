@@ -1,2 +1,2 @@
 rm -rf bin/*
-go build -o bin/zeroPass cmd/main.go
+go build -o bin/zeroPass main.go

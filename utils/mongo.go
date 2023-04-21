@@ -4,6 +4,7 @@ import (
 	"context"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
+	"log"
 )
 
 type MongoClient struct {
@@ -27,10 +28,19 @@ func (mc *MongoClient) InsertDocument(database, collection string, document inte
 	result, err := coll.InsertOne(context.Background(), document)
 
 	if err != nil {
+		log.Printf(err.Error())
 		return nil, err
 	}
 
 	return result, nil
 }
 
-// 類似地，實現其他 CRUD 操作
+func (mc *MongoClient) FindAllDocuments(database, collection string, filter interface{}) (*mongo.Cursor, error) {
+	coll := mc.Client.Database(database).Collection(collection)
+	cur, err := coll.Find(context.Background(), filter)
+	if err != nil {
+		log.Printf(err.Error())
+		return nil, err
+	}
+	return cur, nil
+}

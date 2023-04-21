@@ -21,7 +21,7 @@ func TestGetEnv(t *testing.T) {
 			args: args{
 				key: "DB_CONNECTION",
 			},
-			want: "mongodb://zeroPass:9674asdasdhzx&T7@127.0.0.1:27017/?retryWrites=true&w=majority",
+			want: "mongodb://zeroPass:9674Ephzx&T7@127.0.0.1:27017/?retryWrites=true&w=majority",
 		},
 	}
 	for _, tt := range tests {
