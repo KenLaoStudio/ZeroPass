@@ -1,0 +1,177 @@
+{
+	"info": {
+		"_postman_id": "f50a5054-6b93-4b1f-827d-b881d2201bba",
+		"name": "ZeroPass",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14873604"
+	},
+	"item": [
+		{
+			"name": "Upload member info",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "address",
+							"value": "0x13A1DC2F092E3a6fA8B1bED3C214453d63512fD3",
+							"description": "address",
+							"type": "text"
+						},
+						{
+							"key": "identity_1",
+							"description": "身分證正面",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "identity_2",
+							"description": "身分證背面",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "licence",
+							"description": "駕照正面",
+							"type": "file",
+							"src": []
+						}
+					]
+				},
+				"url": {
+					"raw": "{{server}}upload",
+					"host": [
+						"{{server}}upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all member",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}members",
+					"host": [
+						"{{server}}members"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get one member",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}members/0x13A1DC2F092E3a6fA8B1bED3C214453d635121D3",
+					"host": [
+						"{{server}}members"
+					],
+					"path": [
+						"0x13A1DC2F092E3a6fA8B1bED3C214453d635121D3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verify member",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{server}}members/0x13A1DC2F092E3a6fA8B1bED3C214453d635121D3",
+					"host": [
+						"{{server}}members"
+					],
+					"path": [
+						"0x13A1DC2F092E3a6fA8B1bED3C214453d635121D3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ZK verify",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "address",
+							"value": "0x13A1DC2F092E3a6fA8B1bED3C214453d63512fD3",
+							"description": "address",
+							"type": "text"
+						},
+						{
+							"key": "identity_1",
+							"description": "身分證正面",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "identity_2",
+							"description": "身分證背面",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "licence",
+							"description": "駕照正面",
+							"type": "file",
+							"src": []
+						}
+					]
+				},
+				"url": {
+					"raw": "{{server}}verify",
+					"host": [
+						"{{server}}verify"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "server",
+			"value": "https://morris-api.com/zeropass/",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "server",
+			"value": "127.0.0.1:8080/",
+			"type": "string"
+		}
+	]
+}
