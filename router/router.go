@@ -19,47 +19,41 @@ func UploadHandler(c *gin.Context) {
 
 	identity1, err := c.FormFile("identity_1")
 	if err != nil {
-		log.Fatalf(err.Error())
+		log.Println(err)
 		c.JSON(400, gin.H{"error": "identity_1 file is required"})
-		return
 	}
 
 	identity2, err := c.FormFile("identity_2")
 	if err != nil {
-		log.Fatalf(err.Error())
+		log.Println(err)
 		c.JSON(400, gin.H{"error": "identity_2 file is required"})
-		return
 	}
 
 	licence, err := c.FormFile("licence")
 	if err != nil {
-		log.Fatalf(err.Error())
+		log.Println(err)
 		c.JSON(400, gin.H{"error": "licence file is required"})
-		return
 	}
 
 	// Read the uploaded files' content
 	identity1Content, err := identity1.Open()
 	if err != nil {
-		log.Fatalf(err.Error())
+		log.Println(err)
 		c.JSON(500, gin.H{"error": "Error reading identity_1 file"})
-		return
 	}
 	defer identity1Content.Close()
 
 	identity2Content, err := identity2.Open()
 	if err != nil {
-		log.Fatalf(err.Error())
+		log.Println(err)
 		c.JSON(500, gin.H{"error": "Error reading identity_2 file"})
-		return
 	}
 	defer identity2Content.Close()
 
 	licenceContent, err := licence.Open()
 	if err != nil {
-		log.Fatalf(err.Error())
+		log.Println(err)
 		c.JSON(500, gin.H{"error": "Error reading licence file"})
-		return
 	}
 	defer licenceContent.Close()
 
@@ -75,13 +69,11 @@ func UploadHandler(c *gin.Context) {
 	if err != nil {
 		log.Printf(err.Error())
 		c.JSON(500, gin.H{"error": "Error connect into MongoDB"})
-		return
 	}
 	_, err = client.InsertDocument("zeroPass", "member", member)
 	if err != nil {
 		log.Printf(err.Error())
 		c.JSON(500, gin.H{"error": "Error inserting data into MongoDB"})
-		return
 	}
 
 	c.JSON(200, gin.H{"message": "Upload successful"})
