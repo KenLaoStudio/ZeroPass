@@ -13,7 +13,7 @@ import (
 
 // @Router /upload [post]
 func UploadHandler(c *gin.Context) {
-	address := c.PostForm("address")
+	address := c.Param("address")
 	// print c value
 	log.Println(c)
 

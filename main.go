@@ -36,7 +36,7 @@ func main() {
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	// Your other routes and handlers
-	router.POST("/upload", zeroPassRouter.UploadHandler)
+	router.POST("/upload/:address", zeroPassRouter.UploadHandler)
 	router.GET("/members", zeroPassRouter.GetAllMembersHandler)
 	router.GET("/members/:address", zeroPassRouter.GetMember)
 	router.PUT("/members/:address", zeroPassRouter.UpdateMember)
