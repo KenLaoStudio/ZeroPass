@@ -1,21 +1,21 @@
 _type: export
 __export_format: 4
-__export_date: 2023-04-21T17:08:49.720Z
+__export_date: 2023-04-22T07:39:11.321Z
 __export_source: insomnia.desktop.app:v2023.1.0
 resources:
-  - _id: req_f4de14c669c44edc90d8b289ce1a8915
+  - _id: req_66c1b2abc9e746c5a15c948faaff94da
     parentId: wrk_507b96781f914987b526f9945f64d72e
-    modified: 1682096513075
-    created: 1682096491365
-    url: "{{server}}verify"
-    name: Verify
+    modified: 1682149134271
+    created: 1682148917217
+    url: "{{server}}members/0x13A1DC2F092E3a6fA8B1bED3C214453d63512fD3"
+    name: Update member verify
     description: ""
-    method: POST
+    method: PUT
     body: {}
     parameters: []
     headers: []
     authentication: {}
-    metaSortKey: -1682096491365
+    metaSortKey: -1682148917217
     isPrivate: false
     settingStoreCookies: true
     settingSendCookies: true
@@ -32,12 +32,101 @@ resources:
     description: ""
     scope: collection
     _type: workspace
+  - _id: req_7b0fb49e687243cda18b8808bd0895bd
+    parentId: wrk_507b96781f914987b526f9945f64d72e
+    modified: 1682148910728
+    created: 1682145287267
+    url: "{{server}}members/0x13A1DC2F092E3a6fA8B1bED3C214453d63512fD3"
+    name: Get one member
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1682145287267
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_e2a9a22b478447288b4e4715fb793d27
+    parentId: wrk_507b96781f914987b526f9945f64d72e
+    modified: 1682148893000
+    created: 1682145191476
+    url: "{{server}}members"
+    name: Get all member
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1682145191476
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_f4de14c669c44edc90d8b289ce1a8915
+    parentId: wrk_507b96781f914987b526f9945f64d72e
+    modified: 1682106537211
+    created: 1682096491365
+    url: "{{server}}upload"
+    name: Upload
+    description: ""
+    method: POST
+    body:
+      mimeType: multipart/form-data
+      params:
+        - id: pair_0efee80cb0fe463a8bff979361447506
+          name: address
+          value: "0x13A1DC2F092E3a6fA8B1bED3C214453d63512fD3"
+          description: ""
+        - id: pair_66d56dbacdff437c8320fc30ee7b828f
+          name: identity_1
+          value: ""
+          description: ""
+          type: file
+          fileName: /Users/morrislin/Desktop/截圖 2023-04-22 上午3.43.45.png
+        - id: pair_0ecced3b9a1443a4b1eb10d7b59bda24
+          name: identity_2
+          value: ""
+          description: ""
+          type: file
+          fileName: /Users/morrislin/Desktop/截圖 2023-04-22 上午3.43.48.png
+        - id: pair_ab39d1644666473ca14a1cc713fc7bed
+          name: licence
+          value: ""
+          description: ""
+          type: file
+          fileName: /Users/morrislin/Desktop/截圖 2023-04-22 上午3.45.26.png
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: multipart/form-data
+    authentication: {}
+    metaSortKey: -1682096491365
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
   - _id: req_5ace5d2ee4b14b03818daa74e86f5743
     parentId: wrk_507b96781f914987b526f9945f64d72e
-    modified: 1682096524365
+    modified: 1682106530350
     created: 1680683553290
-    url: "{{server}}upload"
-    name: Upload data
+    url: "{{server}}verify"
+    name: Verify
     description: ""
     method: POST
     body: {}
@@ -81,9 +170,9 @@ resources:
     _type: api_spec
   - _id: env_e3b9161db071443689ae0513625cebd6
     parentId: env_56a20bcf2d98d91ca6e39f0a0fe37fcb600c6e30
-    modified: 1682096555869
+    modified: 1682099264310
     created: 1682096387435
-    name: ZeroPass env
+    name: ZeroPass local env
     data:
       server: 127.0.0.1:8080/
     dataPropertyOrder:
@@ -92,4 +181,18 @@ resources:
     color: null
     isPrivate: false
     metaSortKey: 1682096387435
+    _type: environment
+  - _id: env_5d82b99c192b4ea99481a8faa593314e
+    parentId: env_56a20bcf2d98d91ca6e39f0a0fe37fcb600c6e30
+    modified: 1682099310182
+    created: 1682099252967
+    name: ZeroPass server env
+    data:
+      server: https://morris-api.com/zeropass/
+    dataPropertyOrder:
+      "&":
+        - server
+    color: null
+    isPrivate: false
+    metaSortKey: 1682099252967
     _type: environment

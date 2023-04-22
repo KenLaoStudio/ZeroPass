@@ -14,6 +14,8 @@ import (
 // @Router /upload [post]
 func UploadHandler(c *gin.Context) {
 	address := c.PostForm("address")
+	// print c value
+	log.Println(c)
 
 	identity1, err := c.FormFile("identity_1")
 	if err != nil {
