@@ -1,22 +1,15 @@
 package router
 
 import (
+	"ZeroPassBackend/models"
 	"ZeroPassBackend/utils"
-	"context"
-	"fmt"
 	"github.com/gin-gonic/gin"
+	"go.mongodb.org/mongo-driver/bson"
 	"io"
 	"io/ioutil"
 	"log"
+	"net/http"
 )
-
-type Member struct {
-	Address    string
-	Identity_1 []byte
-	Identity_2 []byte
-	Licence    []byte
-	verify     bool
-}
 
 // @Router /upload [post]
 func UploadHandler(c *gin.Context) {
@@ -63,12 +56,12 @@ func UploadHandler(c *gin.Context) {
 	defer licenceContent.Close()
 
 	// Insert the data into MongoDB
-	member := Member{
+	member := models.Member{
 		Address:    address,
 		Identity_1: readAllBytes(identity1Content),
 		Identity_2: readAllBytes(identity2Content),
 		Licence:    readAllBytes(licenceContent),
-		verify:     false,
+		Verify:     false,
 	}
 	client, err := utils.NewMongoClient(utils.GetEnv("DB_CONNECTION"))
 	if err != nil {
@@ -86,30 +79,60 @@ func UploadHandler(c *gin.Context) {
 	c.JSON(200, gin.H{"message": "Upload successful"})
 }
 
-func AllMemberHandler(c *gin.Context) []Member {
-	var memberList []Member
-	// 從 MongoDB 取得所有會員資料
+func GetAllMembersHandler(c *gin.Context) {
 	client, err := utils.NewMongoClient(utils.GetEnv("DB_CONNECTION"))
-	cur, err := client.FindAllDocuments("zeroPass", "member", nil)
 	if err != nil {
-		fmt.Println(err)
-	}
-	defer cur.Close(context.Background())
-
-	for cur.Next(context.Background()) {
-		var member Member
-		err := cur.Decode(&member)
-		if err != nil {
-			fmt.Println(err)
-		}
-		memberList = append(memberList, member)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Cannot connect to database"})
+		return
 	}
 
-	if err := cur.Err(); err != nil {
-		fmt.Println(err)
+	var users []models.Member
+	err = client.FindAll("zeroPass", "member", bson.M{}, &users)
+	if err != nil {
+		log.Println("Failed to find all users:", err)
 	}
-	// 返回結果
-	return memberList
+
+	c.JSON(http.StatusOK, users)
+}
+
+func GetMember(c *gin.Context) {
+	address := c.Param("address")
+	log.Printf("address: %s", address)
+	client, err := utils.NewMongoClient(utils.GetEnv("DB_CONNECTION"))
+	if err != nil {
+		log.Printf(err.Error())
+		c.JSON(500, gin.H{"error": "Error connect into MongoDB"})
+		return
+	}
+	var user models.Member
+	err = client.FindOne("zeroPass", "member", bson.M{"address": address}, &user)
+	if err != nil {
+		log.Println("Failed to find all users:", err)
+	}
+
+	c.JSON(200, user)
+}
+
+func UpdateMember(c *gin.Context) {
+	address := c.Param("address")
+
+	client, err := utils.NewMongoClient(utils.GetEnv("DB_CONNECTION"))
+	if err != nil {
+		log.Printf(err.Error())
+		c.JSON(500, gin.H{"error": "Error connect into MongoDB"})
+		return
+	}
+	// Update one document
+	filter := bson.M{"address": address}
+	update := bson.M{"Verify": true}
+	result, err := client.UpdateOne("zeroPass", "member", filter, update)
+	if err != nil {
+		log.Println("Failed to update user:", err)
+	} else {
+		log.Printf("Updated %v documents\n", result.ModifiedCount)
+	}
+
+	c.JSON(200, gin.H{"message": "Member updated successfully"})
 }
 
 // @Router /verify [post]

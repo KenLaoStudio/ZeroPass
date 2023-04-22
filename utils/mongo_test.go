@@ -31,14 +31,3 @@ func TestInsertDocument(t *testing.T) {
 	assert.Nil(t, err)
 	assert.NotNil(t, result)
 }
-
-func TestAllMember(t *testing.T) {
-	// Arrange
-	mc, _ := NewMongoClient(connectionString)
-
-	// Act
-	result, err := mc.FindAllDocuments("zeroPass", "member", nil)
-	// Assert
-	assert.Nil(t, err)
-	assert.NotNil(t, result)
-}

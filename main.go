@@ -37,7 +37,9 @@ func main() {
 
 	// Your other routes and handlers
 	router.POST("/upload", zeroPassRouter.UploadHandler)
-	router.GET("/member", zeroPassRouter.AllMemberHandler)
+	router.GET("/members", zeroPassRouter.GetAllMembersHandler)
+	router.GET("/members/:address", zeroPassRouter.GetMember)
+	router.PUT("/members/:address", zeroPassRouter.UpdateMember)
 	router.POST("/verify", zeroPassRouter.VerifyHandler)
 
 	_ = router.Run(":8080")
