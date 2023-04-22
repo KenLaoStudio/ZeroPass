@@ -19,18 +19,21 @@ func UploadHandler(c *gin.Context) {
 
 	identity1, err := c.FormFile("identity_1")
 	if err != nil {
+		log.Fatalf(err.Error())
 		c.JSON(400, gin.H{"error": "identity_1 file is required"})
 		return
 	}
 
 	identity2, err := c.FormFile("identity_2")
 	if err != nil {
+		log.Fatalf(err.Error())
 		c.JSON(400, gin.H{"error": "identity_2 file is required"})
 		return
 	}
 
 	licence, err := c.FormFile("licence")
 	if err != nil {
+		log.Fatalf(err.Error())
 		c.JSON(400, gin.H{"error": "licence file is required"})
 		return
 	}
@@ -38,6 +41,7 @@ func UploadHandler(c *gin.Context) {
 	// Read the uploaded files' content
 	identity1Content, err := identity1.Open()
 	if err != nil {
+		log.Fatalf(err.Error())
 		c.JSON(500, gin.H{"error": "Error reading identity_1 file"})
 		return
 	}
@@ -45,6 +49,7 @@ func UploadHandler(c *gin.Context) {
 
 	identity2Content, err := identity2.Open()
 	if err != nil {
+		log.Fatalf(err.Error())
 		c.JSON(500, gin.H{"error": "Error reading identity_2 file"})
 		return
 	}
@@ -52,6 +57,7 @@ func UploadHandler(c *gin.Context) {
 
 	licenceContent, err := licence.Open()
 	if err != nil {
+		log.Fatalf(err.Error())
 		c.JSON(500, gin.H{"error": "Error reading licence file"})
 		return
 	}
