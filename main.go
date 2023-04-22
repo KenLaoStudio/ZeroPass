@@ -28,8 +28,9 @@ func main() {
 
 	// Add CORS middleware
 	config := cors.DefaultConfig()
-	config.AllowAllOrigins = true
-	config.AllowHeaders = append(config.AllowHeaders, "Content-Type")
+	config.AllowOrigins = []string{"*"} // 允许所有来源
+	config.AllowMethods = []string{"GET", "POST", "PUT", "DELETE"}
+	config.AllowHeaders = []string{"Origin", "Content-Type", "Accept"}
 	router.Use(cors.New(config))
 
 	// Set up Swagger middleware
