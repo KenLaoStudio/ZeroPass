@@ -3,6 +3,7 @@ package main
 import (
 	_ "ZeroPassBackend/docs"
 	zeroPassRouter "ZeroPassBackend/router"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"github.com/swaggo/files"
@@ -24,6 +25,13 @@ func init() {
 // @BasePath /user
 func main() {
 	router := gin.Default()
+
+	// Add CORS middleware
+	config := cors.DefaultConfig()
+	config.AllowOrigins = []string{"*"} // 允许所有来源
+	config.AllowMethods = []string{"GET", "POST", "PUT", "DELETE"}
+	config.AllowHeaders = []string{"Origin", "Content-Type", "Accept"}
+	router.Use(cors.New(config))
 
 	// Set up Swagger middleware
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
